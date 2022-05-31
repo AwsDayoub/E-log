@@ -1,0 +1,14 @@
+{% extends 'elogs/base.html' %}
+
+    {% block content %}
+
+    <P>{{ post }}</P>
+
+    <p>Edit comment:</p>
+    <form action="{% url 'elogs:edit_comment' comment.id %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="edit_comment">Edit</button>
+    </form>
+
+    {% endblock content %}

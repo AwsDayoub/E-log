@@ -1,0 +1,19 @@
+{% extends "elogs/base.html" %}
+
+
+{% block page_header %}
+<h1>Add Your Room</h1>
+{% endblock page_header %}
+
+{% block content %}
+    
+<form method="POST" action="{% url 'ch:checkview' %}">
+    {% csrf_token %}
+    <label>Room Name :</label>
+    <input type="text" name="roomname">
+    <label>username :</label>
+    <input type="text" name="username">
+    <input type="submit" value="Enter Room">
+</form>
+
+{% endblock content %}

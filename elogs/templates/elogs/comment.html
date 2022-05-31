@@ -1,0 +1,33 @@
+{% extends 'elogs/base.html' %}
+
+{% block page_header %}
+    {{ post }}
+{% endblock page_header %}
+
+{% block content %}
+
+<ul>
+    {% for comment in comments %}
+        <div class="card mb-3">
+            <h4 class="card-header"> 
+                {{ comment.date|date:' M d,Y H:i' }}              
+                {% if comment.user == request.user %}
+                    <small><a href="{% url 'elogs:edit_comment' comment.id %}">Edit comment</a></small>
+                {% endif %}
+            </h4>
+            <div class="card-body">
+                {{ comment.user }}
+                {{ comment.date }}
+                {{ comment.content|linebreaks }}
+            </div>
+        </div>
+    {% empty %}
+        <p>There are no comments for this post yet</p>
+    {% endfor %}
+    <form action="{% url 'elogs:add_comment' post.id %}" method="post">           
+        {% csrf_token %}  
+        {{ form.as_p }}
+        <button name='submit' class="btn btn-lg btn-primary">Send</button>
+    </form>
+</ul>
+{% endblock content %}

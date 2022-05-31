@@ -1,0 +1,31 @@
+{% extends "elogs/base.html" %}
+
+{% block page_header %}
+<h1>Logs</h1>
+{% endblock page_header %}
+
+{% block content %}
+
+
+<a href="{% url 'elogs:new_post' %}">add a new post</a>
+
+
+<ul>
+{% for post in posts %}
+    <div class="card mb-3">
+       <a href="{% url 'elogs:comments' post.id %} " ><h4 class="card-header mb-3">{{ post.title }}</h4></a>
+      <div class="info" style="display: flex;margin: 5px;">
+       <div style="padding-right: 5px"> {{ post.author }} </div>
+       <div style="padding-right: 5px"> {{ post.date }} </div>
+       <div style="padding-right: 5px"> {{ post.categories.name }} </div>
+       <div style="padding-right: 5px"> {{ post.image }} </div>
+       <div style="padding-right: 5px"> {{ post.content }} </div>
+      </div> 
+       
+    </div>
+{% empty %}
+    <li><h3>no posts have been added yet</h3></li>
+{% endfor %}
+</ul>
+
+{% endblock content %}

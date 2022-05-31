@@ -1,0 +1,14 @@
+{% extends 'elogs/base.html' %}
+
+
+
+{% block content %}
+
+<form action="{% url 'elogs:new_post' %}" method="post">           
+    {% csrf_token %}  
+    {{ form.as_p }}
+    <button name='submit' class="btn btn-lg btn-primary">Post</button>
+</form>
+
+
+{% endblock content %}

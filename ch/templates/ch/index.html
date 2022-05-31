@@ -1,0 +1,14 @@
+{% extends "elogs/base.html" %}
+
+{% block page_header %}
+<h1>Rooms</h1>
+{% endblock page_header %}
+
+{% block content %}
+<a href="{% url 'ch:add_room' %}">Add Room</a>
+    {% for room in rooms %}
+       <a href="{% url 'ch:room' room.name %}">{{ room.name }}</a> 
+    {% endfor %}
+
+
+{% endblock content %}
